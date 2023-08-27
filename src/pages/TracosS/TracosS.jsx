@@ -63,7 +63,7 @@ export function TracosS () {
         timestamp: serverTimestamp(),
       });
 
-      const apiUrl = 'http://149.28.103.123:3001/update-google-sheet'; 
+      const apiUrl = 'https://api.pesquisasaude.com.br/update-google-sheet'; 
     const postData = {
       formDemografico,
       formQuest1Fem,
