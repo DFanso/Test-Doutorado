@@ -37,6 +37,8 @@ const options = [
 export function TracosS () {
   const navigate = useNavigate();
   const [tracos, setTracos] = useState(new Array(questions.length).fill(0));
+  sessionStorage.setItem('tracos', JSON.stringify(tracos));
+
   const handleSubmit = async () => {
     const formDemografico = JSON.parse(window.sessionStorage.getItem('formDemografico'));
     const formQuest1Fem =JSON.parse(window.sessionStorage.getItem('formQuest1Fem'));
@@ -47,6 +49,7 @@ export function TracosS () {
     const formQuest3Mas =JSON.parse(window.sessionStorage.getItem('formQuest3Mas'));
     const formSatisfacao = JSON.parse(window.sessionStorage.getItem('formSatisfacao'));
     const formSignificado = JSON.parse(window.sessionStorage.getItem('formSignificado'));
+    const tracos = JSON.parse(window.sessionStorage.getItem('tracos'));
   
     try {
       await addDoc(collection(db, 'form'), {
