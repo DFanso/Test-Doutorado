@@ -150,6 +150,7 @@ export function Home() {
   
   const Demografico = {
     profissao,
+    especialidade,
     nivelFormacao,
     anoConclusao,
     naoConcluiu,
@@ -157,7 +158,6 @@ export function Home() {
     municipioAtua,
     sexo,
     dataNascimento,
-    especialidade,
     cpf,
 
 }
@@ -165,13 +165,12 @@ console.log('valoresConstDemo:', Demografico);
 
 return (
   <div className="container" id="containerhome">
-  <div className="row">
-    <div className="col-md-6">
-      <h1></h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="profissao">Profissão:</label>
-          <br></br>
+    <div className="row">
+      <div className="col-md-6">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="profissao">Profissão:</label>
+            <br></br>
             <select id="profissao" name="profissao" value={profissao} onChange={handleProfissaoChange} className="form-control">
               <option value="">Selecione uma opção</option>
               <option value="Enfermagem">Enfermagem</option>
@@ -183,7 +182,45 @@ return (
               <option value="Psicologia">Psicologia</option>
             </select>
           </div>
-          <br></br>
+
+          {profissao === 'Medicina' && (
+            <>
+              <label htmlFor="medico">Atua em especialidade cirúrgica?</label>
+              <br></br>
+
+              <label htmlFor="areaEspecialidade">Se sim, qual a área de especialidade?</label>
+              <br></br>
+              <input type="text" id="areaEspecialidade" name="areaEspecialidade" value={especialidade} onChange={handlEspecialidadeChange} />
+
+              {/* "Marque se ainda não concluiu o curso:" for Medicina */}
+              <div className="form-group">
+                <label htmlFor="naoConcluiu">Marque se ainda não concluiu o curso:</label>
+                <input
+                  type="checkbox"
+                  id="naoConcluiu"
+                  name="naoConcluiu"
+                  checked={naoConcluiu}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+            </>
+          )}
+          {/* "Marque se ainda não concluiu o curso:" for professions other than Medicina */}
+          {profissao !== 'Medicina' && (
+            <div className="form-group">
+              <label htmlFor="naoConcluiu">Marque se ainda não concluiu o curso:</label>
+              <input
+                type="checkbox"
+                id="naoConcluiu"
+                name="naoConcluiu"
+                checked={naoConcluiu}
+                onChange={handleCheckboxChange}
+              />
+            </div>
+          )}
+
+          
+
           <div className="form-group">
             <label htmlFor="nivelFormacao">Nível de Formação:</label>
             <select id="nivelFormacao" name="nivelFormacao" value={nivelFormacao} onChange={handleNivelFormacaoChange} className="form-control">
@@ -194,17 +231,6 @@ return (
               <option value="Doutorado">Doutorado</option>
               <option value="Pós-Doutorado">Pós-Doutorado</option>
             </select>
-          </div>
-          <br></br>
-          <div className="form-group">
-            <label htmlFor="naoConcluiu">Marque se ainda não concluiu o curso:</label>
-            <input
-              type="checkbox"
-              id="naoConcluiu"
-              name="naoConcluiu"
-              checked={naoConcluiu}
-              onChange={handleCheckboxChange}
-            />
           </div>
           
           <div className="form-group">
@@ -251,18 +277,7 @@ return (
         <br></br>
         <input type="date" id="dataNascimento" name="dataNascimento"  value={dataNascimento} onChange={handleDataNascimentoChange} /> <br /><br />
           
-        
-        {profissao === 'Medicina' && (
-            <>
-              <label htmlFor="medico">Atua em especialidade cirúrgica?</label>
-              <br></br>
-              
-
-              <label htmlFor="areaEspecialidade">Se sim, qual a área de especialidade?</label>
-              <br></br>
-              <input type="text" id="areaEspecialidade" name="areaEspecialidade" value={especialidade} onChange={handlEspecialidadeChange} />
-            </>
-          )}
+      
         <br/><label htmlFor="cpf">4 primeiros dígitos do CPF:</label>
         <input type="text" id="cpf" name="cpf" maxLength="4"  value={cpf} onChange={handleCpfChange}/><br />
 
@@ -277,5 +292,6 @@ return (
     </div>
     </div>
     </div>
-  )
+);
+
 }
