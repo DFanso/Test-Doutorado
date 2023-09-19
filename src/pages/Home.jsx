@@ -66,6 +66,31 @@ export function Home() {
   //   fetchStates();
   // }, []);
 
+  const makeApiRequest = async (data) => {
+    try {
+      const formDemografico = data;
+      const postData = {
+        formDemografico
+      }
+      const response = await fetch('https://api.pesquisasaude.com.br/update-google-sheet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    } catch (error) {
+      console.error('Error making API request:', error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Enviando');
@@ -82,8 +107,10 @@ export function Home() {
 
 
       if (naoConcluiu) {
-          navigate('/pages/agradecimento')
-        }
+      const apiResponse = await makeApiRequest(Demografico);  // Assuming Demografico contains the data you want to send.
+      console.log('API Response:', apiResponse);
+      navigate('/pages/agradecimento');
+    } 
       else if (sexo === 'Masculino') {
         navigate('/pages/Valores-Mas/Quest_1')
         
