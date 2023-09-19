@@ -36,7 +36,7 @@ const options = [
 
 export function TracosS () {
   const navigate = useNavigate();
-  const [tracos, setTracos] = useState(new Array(questions.length).fill(0));
+  const [tracos, setTracos] = useState(new Array(questions.length).fill('null'));
   sessionStorage.setItem('tracos', JSON.stringify(tracos));
 
   const handleSubmit = async () => {

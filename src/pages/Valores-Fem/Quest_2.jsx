@@ -28,7 +28,7 @@ const options = [
 
 export function VF_Quest_2() {
   const navigate = useNavigate();
-  const [answers, setAnswers] = useState(new Array(questions.length).fill(0));
+  const [answers, setAnswers] = useState(new Array(questions.length).fill('null'));
   const currentPage = 3; // Página atual
   const totalPages = 9; // Total de páginas
 
