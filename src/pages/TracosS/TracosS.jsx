@@ -52,19 +52,19 @@ export function TracosS () {
     const tracos = JSON.parse(window.sessionStorage.getItem('tracos'));
   
     try {
-      await addDoc(collection(db, 'form'), {
-        formDemografico,
-        formQuest1Fem,
-        formQuest2Fem,
-        formQuest3Fem,
-        formQuest1Mas,
-        formQuest2Mas,
-        formQuest3Mas,
-        formSatisfacao,
-        formSignificado,
-        tracos,
-        timestamp: serverTimestamp(),
-      });
+      // await addDoc(collection(db, 'form'), {
+      //   formDemografico,
+      //   formQuest1Fem,
+      //   formQuest2Fem,
+      //   formQuest3Fem,
+      //   formQuest1Mas,
+      //   formQuest2Mas,
+      //   formQuest3Mas,
+      //   formSatisfacao,
+      //   formSignificado,
+      //   tracos,
+      //   timestamp: serverTimestamp(),
+      // });
 
       const apiUrl = 'https://api.pesquisasaude.com.br/update-google-sheet'; 
     const postData = {
